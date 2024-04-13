@@ -7,6 +7,8 @@ RUN a2enmod headers
 RUN mkdir /var/www/testsite
 COPY index.html /var/www/testsite/index.html
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
+RUN mkdir  /var/cache/mod_auth_oidc
+RUN chown www-data /var/cache/mod_auth_oidc
 
 EXPOSE 80
 
