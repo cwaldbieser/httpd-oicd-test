@@ -5,7 +5,7 @@ OIDCClientID testsite_client
 OIDCClientSecret {{ CLIENT_SECRET }}
 
 OIDCScope "openid email profile"
-OIDCRedirectURI http://testsite.lafayette.edu:8080/protected/redirect_uri
+OIDCRedirectURI http://localhost:8080/protected/redirect_uri
 OIDCCookiePath /var/cache/mod_auth_oidc
 OIDCCryptoPassphrase "exec:/bin/bash -c \"head /dev/urandom | tr -dc A-Za-z0-9 | head -c 32\""
 
@@ -21,7 +21,7 @@ OIDCCryptoPassphrase "exec:/bin/bash -c \"head /dev/urandom | tr -dc A-Za-z0-9 |
 
 	ServerAdmin waldbiec@lafayette.edu
 	DocumentRoot /var/www/testsite
-	ServerName testsite.lafayette.edu
+	ServerName localhost
 
 	# Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
 	# error, crit, alert, emerg.
@@ -40,7 +40,7 @@ OIDCCryptoPassphrase "exec:/bin/bash -c \"head /dev/urandom | tr -dc A-Za-z0-9 |
 	#Include conf-available/serve-cgi-bin.conf
 	
 	ScriptAlias "/cgi-bin/" "/var/www/cgibin/"
-	ScriptAlias "/protected/cgibin/" "/var/www/testsite/protected/cgibin/"
+	ScriptAlias "/protected/cgi-bin/" "/var/www/testsite/protected/cgibin/"
 
     <Directory /var/www/testsite/protected/ >
 		AuthType openid-connect

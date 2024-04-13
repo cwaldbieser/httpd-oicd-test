@@ -6,6 +6,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt install apache2 libapache2-mod-auth-openi
 RUN a2enmod headers
 RUN a2enmod cgi
 RUN mkdir -p /var/www/testsite/protected/cgibin
+RUN mkdir -p /var/www/testsite/protected/redirect_uri
 COPY index.html /var/www/testsite/index.html
 COPY index.html /var/www/testsite/protected/index.html
 COPY 000-default.conf /etc/apache2/sites-available/000-default.conf
