@@ -8,6 +8,7 @@ OIDCScope "openid email profile"
 OIDCRedirectURI http://localhost:8080/protected/redirect_uri
 OIDCCookiePath /var/cache/mod_auth_oidc
 OIDCCryptoPassphrase "exec:/bin/bash -c \"head /dev/urandom | tr -dc A-Za-z0-9 | head -c 32\""
+OIDCStripCookies mod_auth_openidc_session mod_auth_openidc_session_chunks mod_auth_openidc_session_0 mod_auth_openidc_session_1
 
 <VirtualHost *:80>
 	# The ServerName directive sets the request scheme, hostname and port that
