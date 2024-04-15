@@ -15,7 +15,13 @@ mod_auth_oidc.
  Build and deploy the site locally
 ***********************************
 
-You need to create a text file, `client_secret.txt` that contains the
+You need to create 3 text files:
+
+-  `client_id.txt`: contains the client ID
+-  `client_secret.txt`: contains the shared client secret
+-  `client_metadata.txt`: contains the URL of the OIDC provider metadata
+   URL
+
 client secret. Then:
 
 .. code:: bash
@@ -65,8 +71,7 @@ Below are some examples of some useful OIDC variables:
 
 -  OIDC_CLAIM_preferred_username: waldbiec
 
--  OIDC_CLAIM_service:
-   http://localhost:8080/protected/redirect_uri
+-  OIDC_CLAIM_service: http://localhost:8080/protected/redirect_uri
 
 -  OIDC_CLAIM_sid: 47a8b229321ffc8d3afc38aa7b37aec14444daa1
 
@@ -79,3 +84,23 @@ Below are some examples of some useful OIDC variables:
 -  OIDC_access_token_expires: 1713004649
 
 -  REMOTE_USER: waldbiec@cas.example.net/cas/oidc
+
+Support for Multiple Providers
+==============================
+
+If you frequently test with multiple OIDC providers, you can create the
+3 files with names:
+
+-  client_id.SLUG.txt
+-  client_secret.SLUG.txt
+-  client_metadata.SLUG.txt
+
+Where "SLUG" should be replaced with a simple slug that describes the
+provider (e.g. "cas"). Then run the `set_oidc_provider.sh` script with
+the slug as an argument prior to executing the build and run steps.
+
+.. code:: bash
+
+   $ ./set_oidc_provider.sh cas
+   $ make build
+   $ make run
