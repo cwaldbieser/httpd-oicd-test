@@ -1,2 +1,4 @@
 000-default.conf
-client_secret.txt
+client_id*.txt
+client_secret*.txt
+client_metadata*.txt

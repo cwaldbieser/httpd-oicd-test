@@ -4,13 +4,18 @@ mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
 proj_dir := $(dir $(mkfile_path))
 image := testsite:latest
 template := $(proj_dir)000-default.conf.template
-secret_file := $(proj_dir)client_secret.txt
+client_id_file := $(proj_dir)client_id.txt
+client_secret_file := $(proj_dir)client_secret.txt
+client_metadata_file := $(proj_dir)client_metadata.txt
 site_conf := $(proj_dir)000-default.conf
 
 .PHONY: run build
 
-$(site_conf): $(template) $(secret_file)
-	@sed -e "s/{{ CLIENT_SECRET }}/$$(cat $(secret_file))/g" $(template) > $(site_conf)
+$(site_conf): $(template) $(client_id_file) $(client_secret_file) $(client_metadata_file)
+	sed -e "s/{{ CLIENT_SECRET }}/$$(cat $(client_secret_file))/g" \
+		-e "s;{{ CLIENT_ID }};$$(cat $(client_id_file));g" \
+		-e "s;{{ CLIENT_METADATA }};$$(cat $(client_metadata_file));g" \
+		$(template) > $(site_conf)
 
 help:
 	@echo "'make build': Create docker image.";

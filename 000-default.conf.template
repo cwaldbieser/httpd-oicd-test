@@ -1,7 +1,7 @@
 
-OIDCProviderMetadataURL https://cas.stage.lafayette.edu/cas/oidc/.well-known/openid-configuration
+OIDCProviderMetadataURL {{ CLIENT_METADATA }}
 
-OIDCClientID testsite_client
+OIDCClientID {{ CLIENT_ID }}
 OIDCClientSecret {{ CLIENT_SECRET }}
 
 OIDCScope "openid email profile"
